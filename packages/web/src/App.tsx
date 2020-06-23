@@ -7,6 +7,7 @@ import {
 import { themeReducer } from './hooks/reducers/themeReducer';
 import { themeContext } from './hooks/contexts/themeContext';
 import TopBar from './components/TopBar/TopBar';
+import PostPage from './pages/PostPage';
 
 function App() {
 	const [ state, dispatch ] = useReducer(themeReducer, { dark: true });
@@ -15,8 +16,20 @@ function App() {
     typography: {
       fontFamily: [
         '"Rubik"',
-        '"Fira Code"'
+        '"Fira Sans"',
+        '"Fira Code"',
+        '"Roboto Mono"'
       ].join(','),
+      h1: {
+        color: "#e2d7bb",
+        fontSize: "48px",
+        fontWeight: 700
+      },
+      body1: {
+        color: "#e2d7bb",
+        fontSize: "16px",
+        fontFamily: "Fira Sans"
+      }
     },
 		palette: {
       type: state.dark ? 'dark' : 'light',
@@ -31,6 +44,7 @@ function App() {
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
         <TopBar/>
+        <PostPage />
 			</ThemeProvider>
 		</themeContext.Provider>
 	);

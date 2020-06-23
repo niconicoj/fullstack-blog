@@ -171,6 +171,26 @@ export type Mail = {
   subject: Content;
 };
 
+export type PostQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type PostQuery = (
+  { __typename?: 'Query' }
+  & { post?: Maybe<(
+    { __typename?: 'Post' }
+    & Pick<Post, 'createdAt'>
+    & { title: (
+      { __typename?: 'Content' }
+      & Pick<Content, 'text'>
+    ), body: (
+      { __typename?: 'Content' }
+      & Pick<Content, 'id' | 'text'>
+    ) }
+  )> }
+);
+
 export type PostsQueryVariables = Exact<{
   page: Scalars['Float'];
 }>;
@@ -196,6 +216,65 @@ export type PostsQuery = (
 );
 
 
+export const PostDocument = gql`
+    query Post($id: String!) {
+  post(postId: $id) {
+    createdAt
+    title {
+      text
+    }
+    body {
+      id
+      text
+    }
+  }
+}
+    `;
+export type PostComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<PostQuery, PostQueryVariables>, 'query'> & ({ variables: PostQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const PostComponent = (props: PostComponentProps) => (
+      <ApolloReactComponents.Query<PostQuery, PostQueryVariables> query={PostDocument} {...props} />
+    );
+    
+export type PostProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<PostQuery, PostQueryVariables>
+    } & TChildProps;
+export function withPost<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  PostQuery,
+  PostQueryVariables,
+  PostProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, PostQuery, PostQueryVariables, PostProps<TChildProps, TDataName>>(PostDocument, {
+      alias: 'post',
+      ...operationOptions
+    });
+};
+
+/**
+ * __usePostQuery__
+ *
+ * To run a query within a React component, call `usePostQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePostQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PostQuery, PostQueryVariables>) {
+        return ApolloReactHooks.useQuery<PostQuery, PostQueryVariables>(PostDocument, baseOptions);
+      }
+export function usePostLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PostQuery, PostQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<PostQuery, PostQueryVariables>(PostDocument, baseOptions);
+        }
+export type PostQueryHookResult = ReturnType<typeof usePostQuery>;
+export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
+export type PostQueryResult = ApolloReactCommon.QueryResult<PostQuery, PostQueryVariables>;
 export const PostsDocument = gql`
     query Posts($page: Float!) {
   posts(page: $page) {

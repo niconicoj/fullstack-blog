@@ -38,7 +38,7 @@ import { translationLoader } from './loaders/translationLoader';
       req, 
       res,
       contentLoader: contentLoader(),
-      translationLoader: translationLoader(req.session!.locale)
+      translationLoader: translationLoader(req.session!.locale ?? 'en')
     })  
   });
 
