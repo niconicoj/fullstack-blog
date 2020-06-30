@@ -8,7 +8,7 @@ interface codeHighlighterProps {
 }
 
 const defaultFont = {
-  'font-family': "Roboto Mono"
+  'fontFamily': "Roboto Mono"
 } as React.CSSProperties;
 
 const CodeHighlighter = (props: codeHighlighterProps) => {

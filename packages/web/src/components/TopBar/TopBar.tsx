@@ -9,7 +9,8 @@ const useStyles = makeStyles(() =>
 			alignItems: 'center',
 			justifyContent: 'space-between',
 			width: '100%',
-			background: '#5a524C'
+      background: '#5a524C',
+      position: 'fixed'
 		},
 		lightBrown: {
 			background: '#a89984',

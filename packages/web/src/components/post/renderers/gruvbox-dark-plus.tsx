@@ -5,10 +5,10 @@ export default {
     "padding": "0.5em",
     "background": "#1d2021",
     "color": "#ebdbb2",
-    "border-radius": "8px",
-    "font-family": 'Fira Code',
+    "borderRadius": "8px",
+    "fontFamily": 'Fira Code',
     'pre > code' : {
-      'font-family': "fira Code"
+      'fontFamily': "fira Code"
     }
   },
   "hljs-subst": {
@@ -78,7 +78,7 @@ export default {
   },
   "hljs-code": {
     "color": "#fe8019",
-    "font-family": "fira Code"
+    "fontFamily": "fira Code"
   },
   "hljs-meta": {
     "color": "#fe8019"

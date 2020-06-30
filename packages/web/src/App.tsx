@@ -18,7 +18,8 @@ function App() {
         '"Rubik"',
         '"Fira Sans"',
         '"Fira Code"',
-        '"Roboto Mono"'
+        '"Roboto Mono"',
+        '"Satisfy"'
       ].join(','),
       h1: {
         color: "#e2d7bb",
@@ -26,7 +27,7 @@ function App() {
         fontWeight: 700
       },
       body1: {
-        color: "#e2d7bb",
+        color: "inherit",
         fontSize: "16px",
         fontFamily: "Fira Sans"
       }
