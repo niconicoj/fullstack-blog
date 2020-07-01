@@ -13,6 +13,7 @@ import TCellRenderer from './renderers/TCellRenderer';
 import QuoteRenderer from './renderers/QuoteRenderer';
 import Monospace from '../Monospace';
 import ListItemRenderer from './renderers/ListItemRenderer';
+import InlineCodeRenderer from './renderers/InlineCodeRenderer';
 
 interface PostProps {
   postId: string
@@ -60,7 +61,8 @@ const Post = (props : PostProps) => {
             tableBody: TBodyRenderer,
             tableCell: TCellRenderer,
             blockquote: QuoteRenderer,
-            listItem: ListItemRenderer
+            listItem: ListItemRenderer,
+            inlineCode: InlineCodeRenderer
           }}
         />
       </div>

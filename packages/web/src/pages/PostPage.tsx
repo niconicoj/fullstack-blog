@@ -42,8 +42,8 @@ const PostPage = () => {
 
  	return (
 		<Grid container className={classes.root}>
-			<Grid item sm={2} />
-			<Grid item sm={7}>
+			<Grid item sm={1} />
+			<Grid item sm={8}>
 				<Post postId="8e2ee4a5-7b76-4c11-81cb-e9464cc21200" />
 			</Grid>
 			<Grid item sm={3} className={classes.sidecontent}>
