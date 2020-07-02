@@ -1,10 +1,12 @@
 import { Moment } from 'moment';
 import { Typography, makeStyles, createStyles } from '@material-ui/core';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface PostHeadProps {
 	createdAt: Moment;
-	title?: string | null;
+  title?: string | null;
+  postId: string;
 }
 
 const useStyles = makeStyles(() => 
@@ -30,7 +32,11 @@ const PostHead = (props: PostHeadProps) => {
   const classes = useStyles();
 	return (
 		<div className={classes.root}>
-			<Typography className={classes.sideContentTitle}>{props.title}</Typography>
+			<Typography className={classes.sideContentTitle}>
+        <Link to={`/${props.postId}`} >
+          {props.title}
+        </Link>
+      </Typography>
 			<Typography className={classes.sideContentDate}>{props.createdAt.format('dddd, MMMM Do YYYY')}</Typography>
 		</div>
 	);

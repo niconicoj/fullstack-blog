@@ -4,6 +4,11 @@ import {
 	createMuiTheme,
 	CssBaseline
 } from '@material-ui/core';
+import {
+ BrowserRouter as Router,
+ Switch,
+ Route
+} from "react-router-dom";
 import { themeReducer } from './hooks/reducers/themeReducer';
 import { themeContext } from './hooks/contexts/themeContext';
 import TopBar from './components/TopBar/TopBar';
@@ -45,7 +50,11 @@ function App() {
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
         <TopBar/>
-        <PostPage />
+        <Router>
+        <Switch>
+          <Route path="/:postId" children={<PostPage />} />
+        </Switch>
+        </Router>
 			</ThemeProvider>
 		</themeContext.Provider>
 	);

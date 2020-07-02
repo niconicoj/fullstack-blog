@@ -4,6 +4,7 @@ import Post from '../components/post/Post';
 import { usePostsQuery } from '../generated/graphql';
 import PostHead from '../components/post/PostHead';
 import moment from 'moment';
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
 	createStyles({
@@ -29,6 +30,7 @@ const useStyles = makeStyles(() =>
 const PostPage = () => {
   const {data, error, loading } = usePostsQuery({variables: {page: 1}});
   const classes = useStyles();
+  const { postId } = useParams();
   
   let sideContent: JSX.Element | JSX.Element[] | undefined;
   if(loading) {
@@ -37,14 +39,14 @@ const PostPage = () => {
     sideContent = <Typography>{error.message}</Typography>
   } else {
     sideContent = data?.posts?.posts!.map(post => {
-      return <PostHead title={post.title.text} createdAt={moment(post.createdAt)} key={post.id}></PostHead>
+      return <PostHead title={post.title.text} createdAt={moment(post.createdAt)} postId={post.id} key={post.id}></PostHead>
     })
   }
 
  	return (
 		<Grid container className={classes.root}>
 			<Grid item sm={10}>
-				<Post postId="8e2ee4a5-7b76-4c11-81cb-e9464cc21200" />
+				<Post postId={postId} />
 			</Grid>
 			<Grid item sm={2} className={classes.sidecontent}>
         <Typography className={classes.sideTitle}>Other Posts</Typography>
