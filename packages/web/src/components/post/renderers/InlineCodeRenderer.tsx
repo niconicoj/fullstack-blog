@@ -11,7 +11,7 @@ const useStyles = makeStyles(() =>
 			background: '#1d2021',
 			padding: '2px',
 			borderRadius: '4px',
-			color: '#E78A4E'
+			color: '#fabd2f'
 		}
 	})
 );

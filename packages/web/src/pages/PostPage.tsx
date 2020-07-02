@@ -8,11 +8,12 @@ import moment from 'moment';
 const useStyles = makeStyles(() =>
 	createStyles({
 		root: {
-			paddingTop: '96px'
+      padding: "40px",
+      paddingTop: '96px'
     },
     sidecontent: {
       direction: "rtl",
-      paddingRight: "40px"
+      paddingLeft: "16px"
     },
     sideTitle: {
       fontSize: '32px',
@@ -42,11 +43,10 @@ const PostPage = () => {
 
  	return (
 		<Grid container className={classes.root}>
-			<Grid item sm={1} />
-			<Grid item sm={8}>
+			<Grid item sm={10}>
 				<Post postId="8e2ee4a5-7b76-4c11-81cb-e9464cc21200" />
 			</Grid>
-			<Grid item sm={3} className={classes.sidecontent}>
+			<Grid item sm={2} className={classes.sidecontent}>
         <Typography className={classes.sideTitle}>Other Posts</Typography>
         {sideContent}
       </Grid>

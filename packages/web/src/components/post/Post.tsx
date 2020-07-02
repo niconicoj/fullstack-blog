@@ -2,6 +2,7 @@ import { usePostQuery } from '../../generated/graphql';
 import ReactMarkdown from 'react-markdown';
 import React from 'react';
 import moment from 'moment';
+import remarkTypescript from 'remark-typescript';
 import CodeHighlighter from './renderers/Codehighlighter';
 import { Typography, makeStyles, createStyles } from '@material-ui/core';
 import TableRenderer from './renderers/TableRenderer';
@@ -64,6 +65,7 @@ const Post = (props : PostProps) => {
             listItem: ListItemRenderer,
             inlineCode: InlineCodeRenderer
           }}
+          plugins={[remarkTypescript]}
         />
       </div>
     </div>
