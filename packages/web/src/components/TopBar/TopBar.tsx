@@ -10,7 +10,8 @@ const useStyles = makeStyles(() =>
 			justifyContent: 'space-between',
 			width: '100%',
       background: '#5a524C',
-      position: 'fixed'
+      position: 'fixed',
+      userSelect: "none"
 		},
 		lightBrown: {
 			background: '#a89984',

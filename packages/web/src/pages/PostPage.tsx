@@ -45,10 +45,10 @@ const PostPage = () => {
 
  	return (
 		<Grid container className={classes.root}>
-			<Grid item sm={10}>
+			<Grid item lg={10} sm={9}>
 				<Post postId={postId} />
 			</Grid>
-			<Grid item sm={2} className={classes.sidecontent}>
+			<Grid item lg={2} sm={3} className={classes.sidecontent}>
         <Typography className={classes.sideTitle}>Other Posts</Typography>
         {sideContent}
       </Grid>
