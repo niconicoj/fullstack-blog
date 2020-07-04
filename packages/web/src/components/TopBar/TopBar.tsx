@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Typography } from '@material-ui/core';
 import VerticalDivider, { DividerType } from './VerticalDivider';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
 	createStyles({
@@ -9,9 +10,9 @@ const useStyles = makeStyles(() =>
 			alignItems: 'center',
 			justifyContent: 'space-between',
 			width: '100%',
-      background: '#5a524C',
-      position: 'fixed',
-      userSelect: "none"
+			background: '#5a524C',
+			position: 'fixed',
+			userSelect: 'none'
 		},
 		lightBrown: {
 			background: '#a89984',
@@ -29,7 +30,11 @@ const useStyles = makeStyles(() =>
 			'&:last-child': {
 				paddingRight: '16px'
 			}
-		},
+    },
+    link: {
+      display: 'flex',
+      textDecoration: 'none'
+    },
 		title: {
 			fontSize: '64px',
 			fontWeight: 700,
@@ -40,12 +45,12 @@ const useStyles = makeStyles(() =>
 			fontSize: '48px',
 			lineHeight: 0,
 			fontFamily: 'Fira Code'
-    },
-    button: {
-      fontSize: '36px',
-      lineHeight: 0,
-      fontFamily: 'Fira Code'
-    },
+		},
+		button: {
+			fontSize: '36px',
+			lineHeight: 0,
+			fontFamily: 'Fira Code'
+		},
 		flex: {
 			display: 'flex'
 		}
@@ -58,9 +63,12 @@ const TopBar = () => {
 	return (
 		<div className={classes.navBar}>
 			<div className={classes.flex}>
-				<img alt="" src="/assets/decoration/logoIcon.png" />
+				<Link to="/" className={classes.link}>
+					<img alt="" src="/assets/decoration/logoIcon.png" />
 				<VerticalDivider type={DividerType.light2Light} />
 				<Typography className={classes.el + ' ' + classes.lightBrown + ' ' + classes.title}>BLOG</Typography>
+
+				</Link>
 				<VerticalDivider type={DividerType.light2Dark} />
 				<Typography className={classes.el + ' ' + classes.darkBrown + ' ' + classes.domain}>
 					niconico.io

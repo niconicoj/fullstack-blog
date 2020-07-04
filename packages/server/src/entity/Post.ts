@@ -29,7 +29,7 @@ export class Post extends BaseEntity {
   @Column("uuid")
   titleId: string;
 
-  @OneToOne(() => Content, {onDelete: 'CASCADE'})
+  @OneToOne(() => Content, {onDelete: 'CASCADE', eager:true})
   @JoinColumn({name: "titleId"})
   title: Promise<Content>;
   

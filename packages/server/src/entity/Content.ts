@@ -11,5 +11,5 @@ export class Content extends BaseEntity {
 
   @Field(() => [Translation])
   @OneToMany(() => Translation, translation => translation.content, {onDelete: "CASCADE", eager:true})
-  translations: Translation[];
+  translations: Promise<Translation[]>;
 }
