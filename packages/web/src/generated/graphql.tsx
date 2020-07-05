@@ -86,9 +86,11 @@ export type Mutation = {
   confirmMail: Scalars['Boolean'];
   forgotPassword: Scalars['Boolean'];
   changePassword?: Maybe<User>;
+  logout: Scalars['Boolean'];
   setLocale: Scalars['Boolean'];
   createPost: Post;
   deletePost: Scalars['Boolean'];
+  updatePost: Scalars['Boolean'];
 };
 
 
@@ -131,6 +133,12 @@ export type MutationDeletePostArgs = {
   postId: Scalars['String'];
 };
 
+
+export type MutationUpdatePostArgs = {
+  post: PostOptions;
+  id: Scalars['String'];
+};
+
 export type RegisterInput = {
   nameFirst: Scalars['String'];
   nameLast: Scalars['String'];
@@ -156,6 +164,16 @@ export type ContentInput = {
   locale: Scalars['String'];
   title: Scalars['String'];
   body: Scalars['String'];
+};
+
+export type PostOptions = {
+  content: Array<ContentOptions>;
+};
+
+export type ContentOptions = {
+  locale: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['String']>;
 };
 
 export type Locale = {
@@ -199,6 +217,7 @@ export type PostsQuery = (
   { __typename?: 'Query' }
   & { posts?: Maybe<(
     { __typename?: 'PostsOutput' }
+    & Pick<PostsOutput, 'pageCount'>
     & { posts?: Maybe<Array<(
       { __typename?: 'Post' }
       & Pick<Post, 'id' | 'createdAt'>
@@ -273,6 +292,7 @@ export type PostQueryResult = ApolloReactCommon.QueryResult<PostQuery, PostQuery
 export const PostsDocument = gql`
     query Posts($page: Float!) {
   posts(page: $page) {
+    pageCount
     posts {
       id
       createdAt

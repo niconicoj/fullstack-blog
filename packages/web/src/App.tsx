@@ -6,6 +6,8 @@ import { themeContext } from './hooks/contexts/themeContext';
 import TopBar from './components/TopBar/TopBar';
 import PostPage from './pages/PostPage';
 
+import HomePage from './pages/HomePage';
+
 function App() {
 	const [ state, dispatch ] = useReducer(themeReducer, { dark: true });
 
@@ -38,6 +40,7 @@ function App() {
 				<Router>
 					<TopBar />
 					<Switch>
+            <Route exact path="/" children={<HomePage />} />
 						<Route path="/:postId" children={<PostPage />} />
 					</Switch>
 				</Router>
