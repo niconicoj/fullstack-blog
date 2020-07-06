@@ -1,7 +1,9 @@
 import { ContentFieldResolver } from "./ContentFieldResolver";
+import { GetContentResolver } from "./getContent";
 
 const contentResolver = [
-  ContentFieldResolver
+  ContentFieldResolver,
+  GetContentResolver
 ];
 
 export default contentResolver;

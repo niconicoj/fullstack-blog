@@ -23,6 +23,7 @@ export type Query = {
   me?: Maybe<User>;
   post?: Maybe<Post>;
   posts?: Maybe<PostsOutput>;
+  content?: Maybe<Content>;
 };
 
 
@@ -33,6 +34,11 @@ export type QueryPostArgs = {
 
 export type QueryPostsArgs = {
   page?: Maybe<Scalars['Float']>;
+};
+
+
+export type QueryContentArgs = {
+  label: Scalars['String'];
 };
 
 export type User = {
@@ -63,6 +69,7 @@ export type Post = {
 export type Content = {
   __typename?: 'Content';
   id: Scalars['String'];
+  label?: Maybe<Scalars['String']>;
   translations: Array<Translation>;
   text?: Maybe<Scalars['String']>;
 };
@@ -188,6 +195,19 @@ export type Mail = {
   subject: Content;
 };
 
+export type ContentQueryVariables = Exact<{
+  label: Scalars['String'];
+}>;
+
+
+export type ContentQuery = (
+  { __typename?: 'Query' }
+  & { content?: Maybe<(
+    { __typename?: 'Content' }
+    & Pick<Content, 'text'>
+  )> }
+);
+
 export type PostQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -230,6 +250,58 @@ export type PostsQuery = (
 );
 
 
+export const ContentDocument = gql`
+    query content($label: String!) {
+  content(label: $label) {
+    text
+  }
+}
+    `;
+export type ContentComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<ContentQuery, ContentQueryVariables>, 'query'> & ({ variables: ContentQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const ContentComponent = (props: ContentComponentProps) => (
+      <ApolloReactComponents.Query<ContentQuery, ContentQueryVariables> query={ContentDocument} {...props} />
+    );
+    
+export type ContentProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<ContentQuery, ContentQueryVariables>
+    } & TChildProps;
+export function withContent<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  ContentQuery,
+  ContentQueryVariables,
+  ContentProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, ContentQuery, ContentQueryVariables, ContentProps<TChildProps, TDataName>>(ContentDocument, {
+      alias: 'content',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useContentQuery__
+ *
+ * To run a query within a React component, call `useContentQuery` and pass it any options that fit your needs.
+ * When your component renders, `useContentQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useContentQuery({
+ *   variables: {
+ *      label: // value for 'label'
+ *   },
+ * });
+ */
+export function useContentQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ContentQuery, ContentQueryVariables>) {
+        return ApolloReactHooks.useQuery<ContentQuery, ContentQueryVariables>(ContentDocument, baseOptions);
+      }
+export function useContentLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ContentQuery, ContentQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ContentQuery, ContentQueryVariables>(ContentDocument, baseOptions);
+        }
+export type ContentQueryHookResult = ReturnType<typeof useContentQuery>;
+export type ContentLazyQueryHookResult = ReturnType<typeof useContentLazyQuery>;
+export type ContentQueryResult = ApolloReactCommon.QueryResult<ContentQuery, ContentQueryVariables>;
 export const PostDocument = gql`
     query Post($id: String!) {
   post(postId: $id) {
