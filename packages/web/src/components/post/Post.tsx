@@ -1,20 +1,9 @@
 import { usePostQuery } from '../../generated/graphql';
-import ReactMarkdown from 'react-markdown';
 import React from 'react';
 import moment from 'moment';
-import remarkTypescript from 'remark-typescript';
-import CodeHighlighter from './renderers/Codehighlighter';
 import { Typography, makeStyles, createStyles } from '@material-ui/core';
-import TableRenderer from './renderers/TableRenderer';
-import THeaderRenderer from './renderers/THeaderRenderer';
-import TRowRenderer from './renderers/TRowRenderer';
-import TBodyRenderer from './renderers/TBodyRenderer';
-import ParagraphRenderer from './renderers/ParagraphRenderer';
-import TCellRenderer from './renderers/TCellRenderer';
-import QuoteRenderer from './renderers/QuoteRenderer';
 import Monospace from '../Monospace';
-import ListItemRenderer from './renderers/ListItemRenderer';
-import InlineCodeRenderer from './renderers/InlineCodeRenderer';
+import Markdown from '../Markdown/Mardown';
 
 interface PostProps {
   postId: string
@@ -51,21 +40,8 @@ const Post = (props : PostProps) => {
         {"// "+moment(data?.post?.createdAt).format("dddd, MMMM Do YYYY")}
       </Monospace>
       <div>
-        <ReactMarkdown 
-          source={(data?.post?.body.text as string)}
-          renderers={{
-            paragraph: ParagraphRenderer,
-            code: CodeHighlighter,
-            table: TableRenderer,
-            tableHead: THeaderRenderer,
-            tableRow: TRowRenderer,
-            tableBody: TBodyRenderer,
-            tableCell: TCellRenderer,
-            blockquote: QuoteRenderer,
-            listItem: ListItemRenderer,
-            inlineCode: InlineCodeRenderer
-          }}
-          plugins={[remarkTypescript]}
+        <Markdown 
+          source={(data!.post!.body.text as string)}
         />
       </div>
     </div>

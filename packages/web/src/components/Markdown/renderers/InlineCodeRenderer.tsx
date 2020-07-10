@@ -2,7 +2,7 @@ import { makeStyles, createStyles } from '@material-ui/core';
 import React from 'react';
 
 interface InlineCodeRendererProps {
-  value: string
+  value: string | undefined
 }
 
 const useStyles = makeStyles(() =>

@@ -4,7 +4,7 @@ import gruvbox from './gruvbox-dark-plus';
 
 interface codeHighlighterProps {
   language: string,
-  value: string
+  value: string | undefined
 }
 
 const defaultFont = {
@@ -13,7 +13,7 @@ const defaultFont = {
 
 const CodeHighlighter = (props: codeHighlighterProps) => {
   return (
-    <SyntaxHighlighter language={props.language} codeTagProps={{style: defaultFont}} style={gruvbox}>{props.value}</SyntaxHighlighter>
+    <SyntaxHighlighter language={props.language} codeTagProps={{style: defaultFont}} style={gruvbox}>{props.value ?? ''}</SyntaxHighlighter>
   );
 }
 

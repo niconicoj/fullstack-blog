@@ -9,7 +9,11 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       padding: "80px",
-      paddingTop: "96px"
+      paddingTop: "96px",
+      color: '#e2d7bb'
+    },
+    intro: {
+      marginBottom: "24px"
     }
   })
 )
@@ -46,7 +50,7 @@ const HomePage = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h1" >{intro}</Typography>
+      <Typography variant="h5" component="p" className={classes.intro}>{intro}</Typography>
       {posts}
       <Pagination count={dataPosts ? dataPosts.posts!.pageCount: 0} page={page} onChange={handlePage}/>
     </div>
