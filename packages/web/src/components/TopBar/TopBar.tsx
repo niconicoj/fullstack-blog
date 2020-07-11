@@ -12,7 +12,8 @@ const useStyles = makeStyles(() =>
 			width: '100%',
 			background: '#5a524C',
 			position: 'fixed',
-			userSelect: 'none'
+      userSelect: 'none',
+      zIndex: 10
 		},
 		lightBrown: {
 			background: '#a89984',

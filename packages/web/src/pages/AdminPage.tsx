@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Grid, makeStyles, createStyles, TextField } from '@material-ui/core';
+
 import Markdown from '../components/Markdown/Mardown';
+import AdminDrawer from '../components/AdminDrawer';
 
 const useStyles = makeStyles(() =>
 	createStyles({
 		root: {
-			padding: '40px',
+      padding: '40px',
+      paddingLeft: '280px',
 			paddingTop: '96px',
 			color: '#e2d7bb'
-		},
+    },
 	})
 );
 
@@ -22,6 +25,7 @@ const AdminPage = () => {
 
 	return (
 		<div className={classes.root}>
+      <AdminDrawer /> 
 			<Grid container direction="row" justify="space-around" alignItems="flex-start" spacing={2}>
 				<Grid item xs={6}>
 					<TextField value={text} onChange={handleChange} variant="filled" multiline fullWidth />
