@@ -64,7 +64,7 @@ const AdminDrawer = () => {
     posts = <Typography>{error.message}</Typography>;
   } else {
     posts = data?.posts?.posts!.map(post => {
-      return <ListItem button className={classes.nested}>
+      return <ListItem button className={classes.nested} key={post.id}>
 							<ListItemAvatar>
                 <Avatar alt="B" src="/assets/decoration/logoIcon.png" />
 							</ListItemAvatar>
